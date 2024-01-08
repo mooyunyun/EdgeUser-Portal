@@ -19,9 +19,12 @@ import cdnSceneHTTP3Image from '@/assets/cdn-scene-http3.png'
 import cdnSceneMediaDeliverImage from '@/assets/cdn-scene-media-deliver.png'
 import cdnSceneSQLXSSImage from '@/assets/cdn-scene-sql-xss.png'
 import cdnSceneStaticDeliverImage from '@/assets/cdn-scene-static-deliver.png'
+import configs from "@/configs/configs.js";
+import CountrFormat from "@/components/CountrFormat.vue";
 
 // data
 const data = Data.ref()
+const hasPlans = (data != null && data.value != null && data.value.plans != null && data.value.plans.length > 0)
 
 // second menu
 const newsBoxRef = ref(null)
@@ -38,11 +41,12 @@ const secondMenuItems = [
 		command: goItem,
 		ref: newsBoxRef
 	},
-	/**{
+	{
 		label: '产品规格',
 		command: goItem,
-		ref: plansBoxRef
-	},**/
+		ref: plansBoxRef,
+		visible: hasPlans
+	},
 	{
 		label: '产品优势',
 		command: goItem,
@@ -348,28 +352,56 @@ const scenes = [
 		</div>
 
 		<!-- 产品规格 -->
-		<div class="block" v-if="false">
+		<div class="block" v-if="hasPlans">
 			<div class="inner-block" ref="plansBoxRef">
 				<h2 class="text-2xl font-normal">产品规格</h2>
 				<div class="plans-box flex-wrap flex line-height-4">
-					<div class="plan-box" v-for="i in 5" @mouseover="planBoxMouseOver" @mouseout="planBoxMouseOut">
-						<div class="font-normal text-lg"><strong>基础套餐</strong></div>
-						<div class="text-gray-600">适用于普通站点适用于普通站点</div>
+					<div class="plan-box" v-for="plan in data.plans" @mouseover="planBoxMouseOver" @mouseout="planBoxMouseOut">
+						<div class="font-normal text-lg"><strong>{{plan.name}}</strong></div>
+						<div class="text-gray-600"><span v-if="plan.description.length > 0">{{plan.description}}</span><span v-else>{{plan.name}}</span></div>
 						<TDivider></TDivider>
 						<div>
-							下行流量
-							<div class="value">{{ 100 * i }}TB</div>
+							<span class="text-gray-600">网站数</span>
+							<div class="value">{{ plan.totalServers }}</div>
 						</div>
 						<div>
-							网站数
-							<div class="value">{{ 10 * i }}</div>
+							<span class="text-gray-600">请求数(每天)</span>
+							<div class="value">
+								<span v-if="plan.dailyRequests > 0"><CountrFormat :value="plan.dailyRequests"></CountrFormat></span>
+								<span v-else>无限制</span>
+							</div>
 						</div>
-						<div>优惠价格
-							<div class="value">100元/月</div>
+						<div>
+							<span class="text-gray-600">下行流量</span>
+							<span v-if="plan.trafficLimit != null && plan.trafficLimit.dailySize != null && plan.trafficLimit.dailySize.count > 0">(每天)</span>
+							<span v-else-if="plan.trafficLimit != null && plan.trafficLimit.monthlySize != null && plan.trafficLimit.monthlySize.count > 0">(每月)</span>
+							<span v-else-if="plan.trafficLimit != null && plan.trafficLimit.totalSize != null && plan.trafficLimit.totalSize.count > 0">(总)</span>
+							<div class="value">
+								<span v-if="plan.trafficLimit != null && plan.trafficLimit.dailySize != null && plan.trafficLimit.dailySize.count > 0">
+									{{plan.trafficLimit.dailySize.count}} {{plan.trafficLimit.dailySize.unit.toUpperCase().replace(/(.)B/, "$1iB")}}
+								</span>
+								<span v-else-if="plan.trafficLimit != null && plan.trafficLimit.monthlySize != null && plan.trafficLimit.monthlySize.count > 0">
+									{{plan.trafficLimit.monthlySize.count}} {{plan.trafficLimit.monthlySize.unit.toUpperCase().replace(/(.)B/, "$1iB")}}
+								</span>
+								<span v-else-if="plan.trafficLimit != null && plan.trafficLimit.totalSize != null && plan.trafficLimit.totalSize.count > 0">
+									{{plan.trafficLimit.totalSize.count}} {{plan.trafficLimit.totalSize.unit.toUpperCase().replace(/(.)B/, "$1iB")}}
+								</span>
+								<span v-else>无限制</span>
+							</div>
+						</div>
+						<div>
+							<span class="text-gray-600">优惠价格</span>
+							<div class="value" v-if="plan.priceType == 'traffic'">按流量用量</div>
+							<div class="value" v-if="plan.priceType == 'bandwidth'">按带宽用量</div>
+							<div class="value" v-if="plan.priceType == 'period'">
+								<span v-if="plan.monthlyPrice > 0">{{plan.monthlyPrice}}元/月</span>
+								<span v-else-if="plan.seasonallyPrice > 0">{{plan.seasonallyPrice}}元/季</span>
+								<span v-else-if="plan.yearlyPrice > 0">{{plan.yearlyPrice}}元/年</span>
+							</div>
 						</div>
 						<TDivider></TDivider>
 						<div class="mt-2">
-							<TButton outlined>立即购买</TButton>
+							<a :href="configs.hostURL('/plans/buy?planId=' + plan.id)"><TButton outlined>立即购买</TButton></a>
 						</div>
 					</div>
 				</div>

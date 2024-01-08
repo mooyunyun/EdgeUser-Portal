@@ -22,3 +22,5 @@ if [ -d "$TARGET" ]; then
 	rm -rf "${TARGET}/portal/"*
 	cp -R "${ROOT}/dist/portal" "${TARGET}"
 fi
+
+echo "ok"
