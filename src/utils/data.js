@@ -3,13 +3,13 @@ import configs from "@/configs/configs.js";
 import axios from "axios";
 
 const Data = {
-	ref: function () {
+	ref () {
 		if (window.X_VIEW_DATA == null || typeof window.X_VIEW_DATA !== "object") {
 			window.X_VIEW_DATA = {}
 		}
 		return ref(window.X_VIEW_DATA)
 	},
-	get: async function (path, args, callback) {
+	async get (path, args, callback) {
 		if (path.length > 0 && path.charAt(path.length - 1) == "/") {
 			path = path.substring(0, path.length - 1)
 		}
