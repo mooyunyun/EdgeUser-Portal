@@ -1,0 +1,29 @@
+html {
+ font-size: 14px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family);
+    font-weight: normal;
+    color: var(--text-color);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--gray-100);
+}
+
+body .block {
+    background: white;
+}
+
+body .block .inner-block {
+    padding: 1rem 1rem 2rem 1rem;
+    margin: 2rem auto;
+}
+
+@media all and (min-width: 1024px) {
+    body .block .inner-block {
+        width: 1024px;
+    }
+}

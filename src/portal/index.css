@@ -1,0 +1,23 @@
+.summary-box {
+  position: relative;
+  height: 20rem;
+}
+.summary-box .description-box {
+  margin-right: 42rem;
+}
+.summary-box .description-box p.title {
+  font-weight: bold;
+}
+.summary-box .description-box i.pi-check {
+  color: var(--primary-600);
+  font-size: 0.9rem;
+}
+.summary-box .image-box {
+  position: absolute;
+  top: 0;
+  right: 2rem;
+}
+.summary-box .image-box :deep(img) {
+  width: 26rem !important;
+}
+/*# sourceMappingURL=index.css.map */

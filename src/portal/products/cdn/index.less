@@ -1,0 +1,143 @@
+.p-breadcrumb {
+	border: none;
+	margin-left: -1rem;
+}
+
+h2 {
+	text-align: center;
+	margin-bottom: 2rem;
+}
+
+.summary-box {
+	position: relative;
+
+	.description-box {
+		margin-right: 42rem;
+
+		p.title {
+			font-weight: bold;
+		}
+
+		i.pi-check {
+			color: var(--primary-600);
+			font-size: 0.9rem;
+		}
+	}
+
+	.image-box {
+		:deep(img) {
+			width: 26rem !important;
+		}
+
+		position: absolute;
+		top: 0;
+		right: 2rem;
+	}
+
+	.second-menubar {
+		margin-top: 4rem;
+	}
+}
+
+.news-box {
+	padding: 0;
+
+	li {
+		width: 33%;
+
+		a {
+			color: var(--text-color);
+			text-decoration: none;
+		}
+
+		a:hover {
+			color: var(--primary-color);
+		}
+
+		span.date-span {
+			color: var(--gray-600);
+		}
+	}
+}
+
+.plans-box {
+	.plan-box {
+		border: 1px var(--gray-400) solid;
+		width: 16rem;
+		margin-right: 1.5rem;
+		margin-top: 1.5rem;
+		padding: 1rem;
+
+		.value {
+			font-size: 1.4rem;
+		}
+	}
+}
+
+.scenes-box {
+	height: 21rem;
+
+	.p-tabview-panel {
+		.content-box {
+			position: relative;
+
+			.description-box {
+				margin-right: 40rem;
+
+				p.title {
+					font-weight: bold;
+					font-size: 1.1rem;
+				}
+
+				i.pi-check {
+					color: var(--primary-600);
+					font-size: 0.9rem;
+				}
+			}
+
+			.image-box {
+				:deep(img) {
+					width: 26rem !important;
+				}
+
+				position: absolute;
+				top: 0;
+				right: 2rem;
+			}
+		}
+	}
+}
+
+.docs-box {
+	.card {
+		width: 14rem;
+		border: 1px solid var(--gray-300);
+		position: relative;
+		color: var(--text-color);
+		text-decoration: none;
+
+		p {
+			display: block;
+			color: var(--gray-600);
+		}
+
+		padding-left: 1rem;
+		padding-top: 1.1rem;
+		cursor: pointer;
+
+		i {
+			position: absolute;
+			top: 1rem;
+			right: 1rem;
+			color: var(--primary-color);
+			display: none;
+		}
+	}
+
+	.card:hover {
+		background: var(--gray-100);
+		i {
+			display: inline;
+		}
+	}
+}

@@ -1,2 +1,19 @@
-# EdgeUser-Portal
-EdgeUser门户页面
+# 用户系统门户页
+
+## Project Setup
+
+```sh
+npm install
+```
+
+### Compile and Hot-Reload for Development
+
+```sh
+npm run dev
+```
+
+### Compile and Minify for Production
+
+```sh
+npm run build
+```
