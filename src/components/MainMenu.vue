@@ -74,7 +74,7 @@ const items = ref([
 					<div class="p-menuitem-content">
 						<a href="/login" class="p-menuitem-link">
 							<span class="p-menuitem-text" v-if="!userIsLogged">登录/注册</span>
-							<span class="p-menuitem-text" v-if="userIsLogged">已登录</span>
+							<span class="p-menuitem-text" v-if="userIsLogged">进入</span>
 						</a>
 					</div>
 				</div>

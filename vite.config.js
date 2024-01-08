@@ -17,18 +17,21 @@ export default defineConfig({
 	},
 	server: {},
 	root: 'src',
-	publicDir: '@/../public',
+	publicDir: '@/public',
 	build: {
 		rollupOptions: {
 			input: [
-				'@/portal/index.html'
+				'@/portal/index.html',
+				'@/portal/post.html',
+				'@/portal/products/index.html',
+				'@/portal/products/cdn/index.html'
 			],
 			output: {
-				assetFileNames: 'assets/app-[hash].[ext]',
-				entryFileNames: 'assets/app-[hash].js',
-				chunkFileNames: 'assets/app-[hash].js',
+				assetFileNames: 'portal/assets/app-[hash].[ext]',
+				entryFileNames: 'portal/assets/app-[hash].js',
+				chunkFileNames: 'portal/assets/app-[hash].js',
 				dir: 'dist'
 			}
-		},
+		}
 	}
 })

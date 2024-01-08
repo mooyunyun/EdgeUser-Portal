@@ -2,6 +2,7 @@
 import Layout from "@/components/Layout.vue";
 import TImage from "@/components/TeaUI/TImage.vue";
 import TButton from "@/components/TeaUI/TButton.vue";
+import cdnArchitectPNG from '@/assets/cdn-architect.png'
 </script>
 
 <template>
@@ -23,7 +24,7 @@ import TButton from "@/components/TeaUI/TButton.vue";
 						</div>
 					</div>
 					<div class="image-box mt-6">
-						<TImage src="/assets/cdn-architect.png"/>
+						<TImage :src="cdnArchitectPNG"/>
 					</div>
 				</div>
 			</div>

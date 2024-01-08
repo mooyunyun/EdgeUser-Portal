@@ -4,10 +4,10 @@ import axios from "axios";
 
 const Data = {
 	ref: function () {
-		if (window.ACTION_DATA == null || typeof window.ACTION_DATA !== "object") {
-			window.ACTION_DATA = {}
+		if (window.X_VIEW_DATA == null || typeof window.X_VIEW_DATA !== "object") {
+			window.X_VIEW_DATA = {}
 		}
-		return ref(window.ACTION_DATA)
+		return ref(window.X_VIEW_DATA)
 	},
 	get: async function (path, args, callback) {
 		if (path.length > 0 && path.charAt(path.length - 1) == "/") {
@@ -15,10 +15,12 @@ const Data = {
 		}
 		let apiURL = configs.hostURL(path)
 		if (typeof args === "string") {
-			if (args.startsWith("?")) {
-				apiURL += args
-			} else {
-				apiURL += "?" + args
+			if (args.length > 0) {
+				if (args.startsWith("?")) {
+					apiURL += args
+				} else {
+					apiURL += "?" + args
+				}
 			}
 		} else if (args != null && typeof args === "object") {
 			let argStrings = []

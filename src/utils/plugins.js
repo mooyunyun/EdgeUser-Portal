@@ -1,5 +1,5 @@
 const TryFilesPlugin = {
-	name: 'url-rewrite',
+	name: 'goedge:try-files',
 	configureServer(server) {
 		server.middlewares.use('/', (req, res, next) => {
 			// try [ 'path.html', 'path/index.html']

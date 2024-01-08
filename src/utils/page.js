@@ -26,7 +26,7 @@ const SetupPage = async function (props) {
 	const app = createApp(props.app)
 
 	// load data
-	if ((typeof props.loadData === "boolean" && props.loadData) || props.loadData === undefined) {
+	if (window["X_FROM_SERVER"] === undefined && ((typeof props.loadData === "boolean" && props.loadData) || props.loadData === undefined)) {
 		await loadData()
 	}
 
@@ -47,14 +47,14 @@ const SetupPage = async function (props) {
 }
 
 async function loadData() {
-	window.ACTION_DATA = {}
+	window.X_VIEW_DATA = {}
 
 	var path = window.location.pathname
 	if (path.length > 0 && path.charAt(path.length - 1) == "/") {
 		path = path.substring(0, path.length - 1)
 	}
 	await Data.get(path, window.location.search, function (data) {
-		window.ACTION_DATA = data
+		window.X_VIEW_DATA = data
 	})
 }
 

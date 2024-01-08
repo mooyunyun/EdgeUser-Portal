@@ -12,6 +12,14 @@ import ScrollTop from "primevue/scrolltop";
 import {ref} from "vue";
 import Data from "@/utils/data.js";
 
+import cdnArchitectPNG from '@/assets/cdn-architect.png'
+import cdnSceneCCImage from '@/assets/cdn-scene-cc.png'
+import cdnSceneHTTPSImage from '@/assets/cdn-scene-https.png'
+import cdnSceneHTTP3Image from '@/assets/cdn-scene-http3.png'
+import cdnSceneMediaDeliverImage from '@/assets/cdn-scene-media-deliver.png'
+import cdnSceneSQLXSSImage from '@/assets/cdn-scene-sql-xss.png'
+import cdnSceneStaticDeliverImage from '@/assets/cdn-scene-static-deliver.png'
+
 // data
 const data = Data.ref()
 
@@ -30,11 +38,11 @@ const secondMenuItems = [
 		command: goItem,
 		ref: newsBoxRef
 	},
-	{
+	/**{
 		label: '产品规格',
 		command: goItem,
 		ref: plansBoxRef
-	},
+	},**/
 	{
 		label: '产品优势',
 		command: goItem,
@@ -50,11 +58,11 @@ const secondMenuItems = [
 		command: goItem,
 		ref: scenesBoxRef
 	},
-	{
+	/**{
 		label: '产品计费',
 		command: goItem,
 		ref: priceBoxRef
-	},
+	},**/
 	{
 		label: '文档与工具',
 		command: goItem,
@@ -195,7 +203,7 @@ const scenes = [
 				description: "可以设置要排除的缓存条件，避免影响动态请求"
 			}
 		],
-		image: "/assets/cdn-scene-static-deliver.png"
+		image: cdnSceneStaticDeliverImage
 	},
 	{
 		name: "音视频加速",
@@ -210,7 +218,7 @@ const scenes = [
 				description: "支持并发读取常见的多个ts文件下载"
 			}
 		],
-		image: "/assets/cdn-scene-media-deliver.png"
+		image: cdnSceneMediaDeliverImage
 	},
 	{
 		name: "HTTPS安全",
@@ -229,7 +237,7 @@ const scenes = [
 				description: "通过OCSP让TLS握手更加快速"
 			}
 		],
-		image: "/assets/cdn-scene-https.png"
+		image: cdnSceneHTTPSImage
 	},
 	{
 		name: "HTTP/3支持",
@@ -248,7 +256,7 @@ const scenes = [
 				description: "相对于TCP，UDP数据包分发的更快速"
 			}
 		],
-		image: "/assets/cdn-scene-http3.png"
+		image: cdnSceneHTTP3Image
 	},
 	{
 		name: "CC防御",
@@ -267,7 +275,7 @@ const scenes = [
 				description: "在WAF中可以使用多个条件组合来检测CC攻击"
 			}
 		],
-		image: "/assets/cdn-scene-cc.png"
+		image: cdnSceneCCImage
 	},
 	{
 		name: "SQL/XSS注入防御",
@@ -286,7 +294,7 @@ const scenes = [
 				description: "可以在WAF日志中查看被拦截的请求信息"
 			}
 		],
-		image: "/assets/cdn-scene-sql-xss.png"
+		image: cdnSceneSQLXSSImage
 	}
 ]
 </script>
@@ -315,7 +323,7 @@ const scenes = [
 						</p>
 					</div>
 					<div class="image-box mt-6">
-						<TImage src="/assets/cdn-architect.png"/>
+						<TImage :src="cdnArchitectPNG"/>
 					</div>
 
 					<Menubar class="second-menubar" :model="secondMenuItems"></Menubar>
@@ -329,7 +337,8 @@ const scenes = [
 				<h2 class="text-2xl font-normal">最新活动</h2>
 				<div>
 					<ul class="list-none news-box flex-wrap flex line-height-4">
-						<li v-for="post in data.latestPosts"><a :href="'/portal/post?postId=' + post.id" target="_blank">
+						<li v-for="post in data.latestPosts"><a :href="'/portal/post?postId=' + post.id"
+																target="_blank">
 							<TTag :label="post.category.name" severity="info" class="mr-1"
 								  v-if="post.category != null && post.category.id > 0"></TTag>
 							{{ post.subject }}</a> <span class="date-span text-sm">{{ post.publishedTime }}</span></li>
